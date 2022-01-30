@@ -10,7 +10,6 @@
 		"publish": "gulp publish",
 		"watch": "gulp watch"
 	},
-	"type": "module",
 	"author": "Coding Bootcamp Praha",
 	"license": "ISC",
 	"devDependencies": {

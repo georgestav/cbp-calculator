@@ -7,44 +7,60 @@ const addition = document.getElementById("btn-add");
 const subtraction = document.getElementById("btn-minus");
 const multiplication = document.getElementById("btn-multiply");
 const division = document.getElementById("btn-divide");
-
+const number_inputs = Array.from(document.getElementsByClassName("btn--num"));
 //end of button assignment
 
 //define an object that has all the functions
 const calcObject = {
-	memory: [], //numbers are stored here
+	temp: [], //numbers are stored here
 	operation: "", //last operation is saved here
-
 	//standard ui functions
+	//add event listener to the number buttons
+	numberButtons() {
+		number_inputs.forEach((number) => {
+			number.addEventListener("click", (e) => {
+				if (input.value === "0") {
+					input.value = "";
+				}
+				input.value += number.textContent;
+			});
+		});
+	},
+	//end of add event listener to the number buttons
 	//clear function
 	clear() {
 		clear.addEventListener("click", () => {
+			input.value = 0;
 			output.textContent = 0;
-			this.memory = [];
+			this.temp = [];
 			this.operation = "";
 		});
 	},
 	equals() {
 		equals.addEventListener("click", () => {
 			let result;
-			this.memory.push(input.value);
+			if (input.value === "0" && this.temp.length > 0) {
+				this.temp[1] = this.temp[0];
+			}
+			this.temp.push(input.value);
+			input.value = 0;
 			if (this.operation === "+") {
-				result = Number(this.memory[0]) + Number(this.memory[1]);
+				result = Number(this.temp[0]) + Number(this.temp[1]);
 				output.textContent = result;
 				return result;
 			}
 			if (this.operation === "-") {
-				result = Number(this.memory[0]) - Number(this.memory[1]);
+				result = Number(this.temp[0]) - Number(this.temp[1]);
 				output.textContent = result;
 				return result;
 			}
 			if (this.operation === "*") {
-				result = Number(this.memory[0]) * Number(this.memory[1]);
+				result = Number(this.temp[0]) * Number(this.temp[1]);
 				output.textContent = result;
 				return result;
 			}
 			if (this.operation === "/") {
-				result = Number(this.memory[0]) / Number(this.memory[1]);
+				result = Number(this.temp[0]) / Number(this.temp[1]);
 				output.textContent = result;
 				return result;
 			}
@@ -54,30 +70,34 @@ const calcObject = {
 	//math functions
 	addition() {
 		addition.addEventListener("click", () => {
-			this.memory.push(input.value);
+			this.temp.push(input.value);
 			this.operation = "+";
 			output.textContent = input.value;
+			input.value = "0";
 		});
 	},
 	subtraction() {
 		subtraction.addEventListener("click", () => {
-			this.memory.push(input.value);
+			this.temp.push(input.value);
 			this.operation = "-";
 			output.textContent = input.value;
+			input.value = "0";
 		});
 	},
 	multiplication() {
 		multiplication.addEventListener("click", () => {
-			this.memory.push(input.value);
+			this.temp.push(input.value);
 			this.operation = "*";
 			output.textContent = input.value;
+			input.value = "0";
 		});
 	},
 	division() {
 		division.addEventListener("click", () => {
-			this.memory.push(input.value);
+			this.temp.push(input.value);
 			this.operation = "/";
 			output.textContent = input.value;
+			input.value = "0";
 		});
 	},
 	//end of math functions
@@ -85,6 +105,7 @@ const calcObject = {
 
 const calculator = () => {
 	calcObject.clear(); //enable clear function
+	calcObject.numberButtons(); //enable number buttons function
 	calcObject.equals(); // enable equals
 	calcObject.addition(); //enable addition function
 	calcObject.subtraction(); //enable addition function
