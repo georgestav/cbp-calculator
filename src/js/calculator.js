@@ -31,32 +31,28 @@ const calcObject = {
 		this.operation = "";
 	},
 	equals() {
-		let result;
-		if (input.value === "0" && this.temp.length > 0) {
-			this.temp[1] = this.temp[0];
-		}
+		// if (input.value === "0" && this.temp.length > 0) {
+		// 	this.temp[1] = this.temp[0];
+		// }
 		this.temp.push(input.value);
+		let result = (num1, num2) => {
+			if (this.operation === "+") {
+				return num1 + num2;
+			}
+			if (this.operation === "-") {
+				return num1 - num2;
+			}
+			if (this.operation === "*") {
+				return num1 * num2;
+			}
+			if (this.operation === "/") {
+				return num1 / num2;
+			}
+		};
+		output.textContent = result(Number(this.temp[0]), Number(this.temp[1]));
+		this.temp = [];
+		this.operation = "";
 		input.value = 0;
-		if (this.operation === "+") {
-			result = Number(this.temp[0]) + Number(this.temp[1]);
-			output.textContent = result;
-			return result;
-		}
-		if (this.operation === "-") {
-			result = Number(this.temp[0]) - Number(this.temp[1]);
-			output.textContent = result;
-			return result;
-		}
-		if (this.operation === "*") {
-			result = Number(this.temp[0]) * Number(this.temp[1]);
-			output.textContent = result;
-			return result;
-		}
-		if (this.operation === "/") {
-			result = Number(this.temp[0]) / Number(this.temp[1]);
-			output.textContent = result;
-			return result;
-		}
 	},
 	//end of standard ui functions
 	//math functions
