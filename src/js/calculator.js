@@ -97,7 +97,7 @@ const calculator = () => {
 	//keyboard input numbers
 	document.addEventListener("keydown", (e) => {
 		//regex test case
-		if (/\d/g.test(e.key)) {
+		if (/\d/g.test(e.key) || e.key === ".") {
 			calcObject.numberButtons(e.key); //call number buttons function
 		}
 	});
