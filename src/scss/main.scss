@@ -61,6 +61,30 @@ body {
 		font-size: 150%;
 		font-weight: 300;
 	}
+	&__controls {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		.main__panel {
+			display: flex;
+			flex-wrap: wrap;
+			width: 9rem;
+
+			.calc__btn:nth-child(13) {
+				width: 6rem;
+			}
+		}
+		.side__panel {
+			display: flex;
+			flex-direction: column;
+			width: 3rem;
+
+			.calc__btn:nth-child(-n + 2) {
+				height: 6rem;
+			}
+		}
+	}
 
 	&__btn {
 		width: 3rem;
@@ -94,10 +118,5 @@ body {
 
 	&__btn--digit:hover {
 		background-color: $color-digit-btn-hover;
-	}
-
-	&__controls {
-		display: flex;
-		flex-wrap: wrap;
 	}
 }
